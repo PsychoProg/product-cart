@@ -1,0 +1,13 @@
+<!-- templates/products/product_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>{{ object.title }}</h1>
+  <p>${{ object.price }}</p>
+  <form action="{% url 'cart:add_to_cart' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="product_id" value="{{ object.id }}">
+    <input type="hidden" name="product_type" value="product">
+    <input type="submit" value="Add to Cart">
+  </form>
+{% endblock %}

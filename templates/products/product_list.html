@@ -1,0 +1,28 @@
+<!-- templates/products/product_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Products</h1>
+  <ul>
+    {% for product in object_list %}
+      <li>
+        <a href="{% url 'cart:product_detail' product.id %}">
+          {{ product.title }} - ${{ product.price }}
+        </a>
+        <form action="{% url 'cart:add_to_cart' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ product.id }}">
+          <input type="hidden" name="product_type" value="product">
+          <input type="submit" value="Add to Cart">
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}
+
+
+
+
+
+
+

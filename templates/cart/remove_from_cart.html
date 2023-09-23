@@ -1,0 +1,9 @@
+<!-- templates/cart/remove_from_cart.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Removed from Cart</h1>
+  <p>Product removed from cart successfully.</p>
+  <a href="{% url 'cart:cart' %}">View Cart</a>
+{% endblock %}
+

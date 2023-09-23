@@ -1,0 +1,21 @@
+<!-- templates/courses/course_list.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Courses</h1>
+  <ul>
+    {% for course in object_list %}
+      <li>
+        <a href="{% url 'cart:course_detail' course.id %}">
+          {{ course.title }} - ${{ course.price }}
+        </a>
+        <form action="{% url 'cart:add_to_cart' %}" method="post">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ course.id }}">
+          <input type="hidden" name="product_type" value="course">
+          <input type="submit" value="Add to Cart">
+        </form>
+      </li>
+    {% endfor %}
+  </ul>
+{% endblock %}

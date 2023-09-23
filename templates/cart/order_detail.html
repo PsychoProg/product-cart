@@ -1,0 +1,25 @@
+<!-- templates/cart/order_detail.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Order Detail</h1>
+  <table>
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Type</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for item in object.items.all %}
+        <tr>
+          <td>{{ item.product.title }}</td>
+          <td>{{ item.product_type }}</td>
+          <td>${{ item.price }}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <p>Total: ${{ object.total }}</p>
+{% endblock %}

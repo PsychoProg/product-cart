@@ -1,3 +1,15 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+admin.site.register(Product)
+admin.site.register(Course)
+
+class OrderItemAdmin(admin.TabularInline):
+    model = OrderItem
+
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ['user', 'id']
+    inlines = [OrderItemAdmin]
+
+

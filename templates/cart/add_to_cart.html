@@ -1,0 +1,8 @@
+<!-- templates/cart/add_to_cart.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Added to Cart</h1>
+  <p>Product added to cart successfully.</p>
+  <a href="{% url 'cart:cart' %}">View Cart</a>
+{% endblock %}

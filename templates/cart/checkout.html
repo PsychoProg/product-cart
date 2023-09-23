@@ -1,0 +1,10 @@
+<!-- templates/cart/checkout.html -->
+{% extends 'base.html' %}
+
+{% block content %}
+  <h1>Checkout</h1>
+  <form action="{% url 'cart:checkout' %}" method="post">
+    {% csrf_token %}
+    <input type="submit" value="Place Order">
+  </form>
+{% endblock %}
