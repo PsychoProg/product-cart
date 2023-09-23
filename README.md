@@ -8,7 +8,7 @@ This is a Django e-commerce website that allows users to browse products and cou
 To get started, clone the repository and install the dependencies.
 
 ```
-git clone https://github.com/your-username/django-e-commerce-website.git
+git clone https://github.com/PsychoProg/product-cart.git
 cd django-e-commerce-website
 pip install -r requirements.txt
 ```
