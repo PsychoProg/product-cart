@@ -96,7 +96,8 @@ class CheckoutView(LoginRequiredMixin, CartMixin, TemplateView):
                 continue
             
         cart.clear()
-        return redirect('cart:order_detail', order_id=order.id)
+        # return redirect('cart:order_detail', order_id=order.id)
+        return redirect('cart:order_detail', pk=order.pk)
 
 class OrderDetailView(LoginRequiredMixin, CartMixin, DetailView):
     model = Order

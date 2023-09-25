@@ -24,6 +24,7 @@ class Cart:
                 item['product'] = Product.objects.get(id=int(item['product_id']))
             elif item['product_type'] == 'course':
                 item['product'] = Course.objects.get(id=int(item['product_id']))
+            item['unique'] = f"{item['product_id']}-{item['product_type']}"
             item['total'] = int(item['price'])
             yield item 
 
