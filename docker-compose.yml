@@ -1,0 +1,16 @@
+version: '3.8'
+
+services:
+  django:
+    container_name: product_cart
+    build:
+      context: ./
+    command: python manage.py runserver 0.0.0.0:8000 
+    volumes:
+      - ./usr/src/app/
+    ports:
+      - 8001:8000
+    environment:
+      - DEBUG=1
+      - SECRET_KEY='django-insecure--yixt*amy(j1hpv4%4fsrzydj$u*=#d3rr2z^01g!+2v)$*k+&'
+      - ALLOWED_HOSTS=localhost,127.0.0.1

@@ -1,0 +1,17 @@
+> pip install redis
+> pip install celery
+
+> pip freeze > requirements.txt
+
+# create docker-compose.yml:
+
+# create Dockerfile
+
+# create entrypoint.sh 
+ash >> alpine bash 
+> chmod +x ./entrypoint.sh
+
+# docker compose 
+> docker-compose up -d --build
+
+127.0.0.1:8001
