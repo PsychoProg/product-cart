@@ -5,12 +5,54 @@ services:
     container_name: product_cart
     build:
       context: ./
-    command: python manage.py runserver 0.0.0.0:8000 
+    command: python manage.py runserver 0.0.0.0:8000
     volumes:
       - ./usr/src/app/
     ports:
       - 8001:8000
+    depends_on:
+      - db
     environment:
       - DEBUG=1
       - SECRET_KEY='django-insecure--yixt*amy(j1hpv4%4fsrzydj$u*=#d3rr2z^01g!+2v)$*k+&'
       - ALLOWED_HOSTS=localhost,127.0.0.1
+    networks:
+      - efk
+  db:
+    image: postgres
+    environment:
+      POSTGRES_USER: jcob
+      POSTGRES_PASSWORD: PassWord
+      POSTGRES_DB: rasor
+  elasticsearch:
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.8.0
+    container_name: elasticsearch
+    ports:
+      - 9200:9200
+      - 9300:9300
+    environment:
+      - discovery.type=single-node
+    networks:
+      - efk
+
+  kibana:
+    image: docker.elastic.co/kibana/kibana:7.8.0
+    container_name: kibana
+    ports:
+      - 5601:5601
+    networks:
+      - efk
+    depends_on:
+      - elasticsearch
+
+  filebeat:
+    image: docker.elastic.co/beats/filebeat:7.8.0
+    volumes:
+      - /path-to-filebeat.yml/filebeat.yml:/usr/share/filebeat/filebeat.yml:ro
+      - /path-to-logs-directory/logs:/usr/share/filebeat/logs
+    environment:
+      - ELASTICSEARCH_URL=http://elasticsearch:9200
+    networks:
+      - efk
+    depends_on:
+      - elasticsearch

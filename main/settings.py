@@ -22,6 +22,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'cart.apps.CartConfig',
+    'test_log.apps.TestLogConfig',
 ]
 
 MIDDLEWARE = [
@@ -109,3 +110,29 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CART_SESSION_ID = 'cart'
+
+# log files 
+LOGGING = {
+ 'version': 1,
+ 'disable_existing_loggers': False,
+ 'formatters': {
+  'simple': {
+   'format': '[%(asctime)s] %(levelname)s | %(funcName)s | %(name)s | %(message)s',
+   'datefmt': '%Y-%m-%d %H:%M:%S',
+  },
+ },
+ 'handlers': {
+  'logger': {
+   'level': 'DEBUG',
+   'class': 'logging.handlers.RotatingFileHandler',
+   'filename': BASE_DIR + '/logs/test.log',
+   'formatter': 'simple',
+  }
+ },
+ 'loggers': {
+  'signal': {
+   'handlers': ['logger'],
+   'level': 'DEBUG',
+  }
+ }
+}
